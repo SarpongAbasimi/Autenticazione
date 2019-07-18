@@ -1,3 +1,4 @@
 .vscode
 loginenv
 .pytest_cache
+.env
