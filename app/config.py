@@ -1,2 +1,15 @@
 class Config(object):
-  pass
+  DEBUG = False
+  TESTING = False
+
+class DevelopmentConfig(Config):
+  ENV = 'development'
+  DEBUG = True
+
+class TestingConfig(Config):
+  DEBUG = True
+
+config = {
+  'development': DevelopmentConfig,
+  'testing': TestingConfig
+}
