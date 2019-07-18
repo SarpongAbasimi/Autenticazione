@@ -8,11 +8,12 @@ class Config(object):
 
 class DevelopmentConfig(Config):
   ENV = os.getenv('DEVELOPMENT_ENV')
-  DEBUG = True
+  DEBUG = os.getenv('DEVELOPMENT_DEBUG')
 
 class TestingConfig(Config):
-  TESTING = True
-  DEBUG = True
+  ENV = os.getenv('TESTING_ENV')
+  TESTING = os.getenv('IS_TESTING')
+  DEBUG = os.getenv('TESTING_DEBUG')
 
 config = {
   'development': DevelopmentConfig,
