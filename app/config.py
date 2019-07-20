@@ -10,7 +10,7 @@ class Config(object):
 class DevelopmentConfig(Config):
   ENV = os.getenv('DEVELOPMENT_ENV')
   DEBUG = os.getenv('DEVELOPMENT_DEBUG')
-  SQLALCHEMY_DATABASE_URI = os.getenv('DEVELOPMENT_DB_URI') or 'sqlite:///database/de.db'
+  SQLALCHEMY_DATABASE_URI = os.getenv('DEVELOPMENT_DB_URI')
 
 class TestingConfig(Config):
   ENV = os.getenv('TESTING_ENV')
