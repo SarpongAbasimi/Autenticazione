@@ -1,4 +1,6 @@
-from flask import Flask, Blueprint, render_template, redirect, url_for
+from app import db
+from app.models import User
+from flask import Flask, Blueprint, render_template, redirect, url_for, request, flash
 from .form import SignUpForm
 
 auth = Blueprint('auth', __name__)
@@ -14,4 +16,16 @@ def new():
 
 @auth.route('/signup', methods=['POST'])
 def create():
-  return redirect(url_for('auth.login'))
+  sign_up_form = SignUpForm()
+  if request.method == 'POST' and sign_up_form.validate_on_submit():
+    if sign_up_form.password.data == sign_up_form.confirm_password.data:
+      user = User(name=sign_up_form.name.data, email=sign_up_form.email.data)
+      user.set_password(sign_up_form.password.data)
+      db.session.add(user)
+      db.session.commit()
+      flash('Congrats')
+      return redirect(url_for('auth.login'))
+    else:
+      flash('emails need to match')
+      return redirect(url_for('auth.new'))
+  

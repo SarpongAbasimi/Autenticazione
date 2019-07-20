@@ -2,12 +2,12 @@
 
 {% block content %}
   <span>sign up</span>
-  <form method="Post" action="/signup">
+  <form method="Post" action="/auth/signup">
     {{ form.csrf_token }}
     {{ form.name(placeholder='name') }}
     {{ form.email(placeholder='email') }}
     {{ form.password(placeholder='password') }}
-    {{ form.confrim_password(placeholder='confirm password') }}
+    {{ form.confirm_password(placeholder='confirm password') }}
     {{ form.submit }}
   </form>
 {% endblock %}
