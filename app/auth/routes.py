@@ -23,9 +23,10 @@ def create():
       user.set_password(sign_up_form.password.data)
       db.session.add(user)
       db.session.commit()
-      flash('Congrats')
+      flash('You were successfully registered')
       return redirect(url_for('auth.login'))
     else:
       flash('emails need to match')
       return redirect(url_for('auth.new'))
+  return redirect(url_for('auth.new'))
   
