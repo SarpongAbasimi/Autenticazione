@@ -12,6 +12,6 @@ def new():
   sign_up_form = SignUpForm()
   return render_template('signup.html', form=sign_up_form)
 
-@auth.route('/sigup', methods=['POST'])
+@auth.route('/signup', methods=['POST'])
 def create():
   return redirect(url_for('auth.login'))

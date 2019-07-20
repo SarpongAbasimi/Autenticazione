@@ -10,7 +10,8 @@ class TestAuth(object):
   def test_sign_up_page(self, client):
     response = client.get('/auth/signup')
     assert b'sign up' in response.data
-  
+    
+  @pytest.mark.skip()
   def test_signing_up(self, client):
     user_data = (
       { 
