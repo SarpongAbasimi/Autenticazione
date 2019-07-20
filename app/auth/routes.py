@@ -1,4 +1,5 @@
 from flask import Flask, Blueprint, render_template, redirect, url_for
+from .form import SignUpForm
 
 auth = Blueprint('auth', __name__)
 
@@ -8,7 +9,8 @@ def login():
 
 @auth.route('/signup', methods=['GET'])
 def new():
-  return render_template('signup.html')
+  sign_up_form = SignUpForm()
+  return render_template('signup.html', form=sign_up_form)
 
 @auth.route('/sigup', methods=['POST'])
 def create():

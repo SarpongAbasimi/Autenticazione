@@ -2,4 +2,11 @@
 
 {% block content %}
   <span>sign up</span>
+  <form>
+    {{ form.csrf_token }}
+    {{ form.name(placeholder='name') }}
+    {{ form.email(placeholder='email') }}
+    {{ form.password(placeholder='password') }}
+    {{ form.confrim_password(placeholder='confirm password') }}
+  </form>
 {% endblock %}

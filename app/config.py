@@ -9,14 +9,16 @@ class Config(object):
 
 class DevelopmentConfig(Config):
   ENV = os.getenv('DEVELOPMENT_ENV')
-  DEBUG = os.getenv('DEVELOPMENT_DEBUG')
+  DEBUG = True
   SQLALCHEMY_DATABASE_URI = os.getenv('DEVELOPMENT_DB_URI')
+  SECRET_KEY = os.getenv('SECRET_KEY')
 
 class TestingConfig(Config):
   ENV = os.getenv('TESTING_ENV')
-  TESTING = os.getenv('IS_TESTING')
-  DEBUG = os.getenv('TESTING_DEBUG')
+  TESTING = True
+  DEBUG = True
   SQLALCHEMY_DATABASE_URI = os.getenv('Test_DB_URI')
+  WTF_CSRF_ENABLED = False
 
 config = {
   'development': DevelopmentConfig,

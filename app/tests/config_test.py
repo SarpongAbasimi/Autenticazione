@@ -8,9 +8,11 @@ class TestConfigSetting():
   
   def test_development_configurations(self):
     db_uri = hasattr(DevelopmentConfig, 'SQLALCHEMY_DATABASE_URI')
-    assert DevelopmentConfig.DEBUG == 'True'
+    app_secret = hasattr(DevelopmentConfig, 'SECRET_KEY')
+    assert DevelopmentConfig.DEBUG == True
     assert DevelopmentConfig.ENV == 'development'
     assert db_uri == True
+    assert app_secret == True
   
   def test_testing_configurations(self):
-    assert TestingConfig.DEBUG == 'True'
+    assert TestingConfig.DEBUG == True
