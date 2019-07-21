@@ -10,17 +10,17 @@ class TestAuth(object):
   def test_sign_up_page(self, client):
     response = client.get('/auth/signup')
     assert b'sign up' in response.data
-    
-  @pytest.mark.skip()
-  def test_signing_up(self, client):
+
+  def test_signing_up_error_validation(self, client):
     user_data = (
       { 
-        'name':'chris', 
-        'email':'e@demo.com',
+        'name':'c', 
+        'email':'e.com',
         'password':'123',
         'confirm_password': '123'
       })
     response = client.post('/auth/signup',
     data = user_data,
     follow_redirects =True)
-    assert b'chris' in response.data
+    assert b'Field must be between 4 and 20 characters long.' in response.data
+    assert b'Please enter your email address.' in response.data
