@@ -14,9 +14,9 @@ class TestAuth(object):
   def test_signing_up_error_validation(self, client):
     user_data = (
       { 
-        'name':'c', 
+        'name':'c',
         'email':'e.com',
-        'password':'123',
+        'password':'de',
         'confirm_password': '123'
       })
     response = client.post('/auth/signup',
@@ -24,3 +24,5 @@ class TestAuth(object):
     follow_redirects =True)
     assert b'Field must be between 4 and 20 characters long.' in response.data
     assert b'Please enter your email address.' in response.data
+    assert b'Field must be between 4 and 8 characters long.' in response.data
+    assert b'Field must be equal to password.' in response.data
