@@ -27,6 +27,11 @@
         {% endfor %}
       {% endif %}
     {{ form.confirm_password(placeholder='confirm password') }}
+      {% if form.confirm_password.errors %}
+        {% for error in form.confirm_password.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
     {{ form.submit }}
   </form>
 {% endblock %}
