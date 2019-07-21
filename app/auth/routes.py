@@ -25,8 +25,5 @@ def create():
       db.session.commit()
       flash('You were successfully registered')
       return redirect(url_for('auth.login'))
-    else:
-      flash('emails need to match')
-      return redirect(url_for('auth.new'))
-  return redirect(url_for('auth.new'))
+  return render_template('signup.html', form=sign_up_form )
   
