@@ -26,3 +26,16 @@ class TestAuth(object):
     assert b'Please enter your email address.' in response.data
     assert b'Field must be between 4 and 8 characters long.' in response.data
     assert b'Field must be equal to password.' in response.data
+
+  def test_for_correct_registration(self, client):
+    user_data = (
+      { 
+        'name':'chris',
+        'email':'ea@demo.com',
+        'password':'123456',
+        'confirm_password':'123456'
+      })
+    response = client.post('/auth/signup',
+    data = user_data,
+    follow_redirects =True)
+    assert b'You were successfully registered.' in response.data

@@ -1,3 +1,4 @@
+import pytest
 from app.models import User
 
 class TestModel(object):
@@ -17,3 +18,4 @@ class TestModel(object):
   def test_user_has_password_attr(self):
     password = hasattr(User, 'password')
     assert password == True
+  

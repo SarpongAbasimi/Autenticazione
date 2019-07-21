@@ -23,7 +23,7 @@ def create():
       user.set_password(sign_up_form.password.data)
       db.session.add(user)
       db.session.commit()
-      flash('You were successfully registered')
+      flash('You were successfully registered.')
       return redirect(url_for('auth.login'))
   return render_template('signup.html', form=sign_up_form )
   
