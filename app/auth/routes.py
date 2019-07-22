@@ -19,9 +19,7 @@ def new_session():
     if user and user.check_password(loginform.password.data):
       login_user(user)
       next = request.args.get('next')
-      if next is None:
-        next = url_for('main.index')
-      return redirect(url_for(next))
+      return redirect(url_for('main.index')) if next is None else redirect(url_for(next))
     flash('Invalid email or password.')
   return redirect(url_for('auth.login'))
 
