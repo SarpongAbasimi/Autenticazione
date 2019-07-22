@@ -7,6 +7,16 @@ class TestAuth(object):
     response = client.get('/auth/login')
     assert b'This is login page' in response.data
   
+  def test_login_session(self, client):
+    response = client.post('/auth/session',
+      data =(
+        {
+          'email': 'e@demo.com',
+          'password': '123456',
+        }),
+        follow_redirects = True)
+    assert b'Invalid email or password.' in response.data
+  
   def test_sign_up_page(self, client):
     response = client.get('/auth/signup')
     assert b'sign up' in response.data
@@ -31,7 +41,7 @@ class TestAuth(object):
     user_data = (
       { 
         'name':'chris',
-        'email':'ea@demo.com',
+        'email':'e@demo.com',
         'password':'123456',
         'confirm_password':'123456'
       })
