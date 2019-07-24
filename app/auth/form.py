@@ -14,7 +14,12 @@ class SignUpForm(FlaskForm):
   def validate_name(self, name):
     user = User.query.filter_by(name=name.data).first()
     if user is not None:
-      raise ValidationError('sorry name has alreaddy been taken')
+      raise ValidationError('sorry name has alreaddy been taken.')
+
+  def validate_email(self, email):
+    email = User.query.filter_by(email=email.data).first()
+    if email is not None:
+      raise ValidationError('sorry email has alreaddy been taken.')
 
 class LoginForm(FlaskForm):
 

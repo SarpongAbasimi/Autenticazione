@@ -50,7 +50,7 @@ class TestAuth(object):
     follow_redirects =True)
     assert b'You were successfully registered.' in response.data
 
-  def test_validation_error_duplicate_email(self, client):
+  def test_name_validation_error_duplicate_email(self, client):
     response = client.post('/auth/signup',
     data= {
       'name': 'chris',
@@ -58,4 +58,25 @@ class TestAuth(object):
       'password': 'sam'
     },
     follow_redirects=True)
-    assert b'sorry name has alreaddy been taken' in response.data
+    assert b'sorry name has alreaddy been taken.' in response.data
+  
+  def test_email_validation_error_duplicate(self, client):
+    response = client.post('/auth/signup',
+    data= {
+      'name': 'nas',
+      'email': 'c@demo.com',
+      'password': 'sam'
+    },
+    follow_redirects=True)
+    assert b'sorry email has alreaddy been taken.' in response.data
+
+  def test_email_name_validation_error_works(self, client):
+    response = client.post('/auth/signup',
+    data= {
+      'name': 'chris',
+      'email': 'c@demo.com',
+      'password': 'sam'
+    },
+    follow_redirects=True)
+    assert b'sorry name has alreaddy been taken.' in response.data
+    assert b'sorry email has alreaddy been taken.' in response.data
