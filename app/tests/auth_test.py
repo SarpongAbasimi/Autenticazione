@@ -40,7 +40,7 @@ class TestAuth(object):
   def test_for_correct_registration(self, client):
     user_data = (
       { 
-        'name':'chris',
+        'name':'hris',
         'email':'e@demo.com',
         'password':'123456',
         'confirm_password':'123456'
@@ -49,3 +49,13 @@ class TestAuth(object):
     data = user_data,
     follow_redirects =True)
     assert b'You were successfully registered.' in response.data
+
+  def test_validation_error_duplicate_email(self, client):
+    response = client.post('/auth/signup',
+    data= {
+      'name': 'chris',
+      'email': 'ca@demo.com',
+      'password': 'sam'
+    },
+    follow_redirects=True)
+    assert b'sorry name has alreaddy been taken' in response.data
