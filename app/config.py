@@ -20,7 +20,7 @@ class TestingConfig(Config):
   DEBUG = True
   SQLALCHEMY_DATABASE_URI = os.getenv('Test_DB_URI') or 'sqlite:///database/clitest.db'
   WTF_CSRF_ENABLED = False
-  SECRET_KEY = os.getenv('TEST_SECRET_KEY')
+  SECRET_KEY = os.getenv('TEST_SECRET_KEY') or 'travissecret'
 
 config = {
   'development': DevelopmentConfig,
