@@ -15,9 +15,11 @@ def create_app(config_name='development'):
 
   from app.main.routes import main
   from app.auth.routes import auth
+  from app.user.routes import user
 
 
   app.register_blueprint(main)
   app.register_blueprint(auth, url_prefix='/auth')
+  app.register_blueprint(user, url_prefix='/altonero')
 
   return app
