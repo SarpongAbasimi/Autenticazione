@@ -1,5 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-welcome {{ username }}
+ {% if current_user.is_authenticated %}
+   {{ current_user.name }}
+ {% endif %}
 {% endblock content %}
