@@ -80,3 +80,7 @@ class TestAuth(object):
     follow_redirects=True)
     assert b'sorry name has alreaddy been taken.' in response.data
     assert b'sorry email has alreaddy been taken.' in response.data
+  
+  def test_for_nav_links_on_login_page(self, client):
+    response = client.get('/auth/login')
+    assert b'Home' in response.data 
