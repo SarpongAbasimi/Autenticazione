@@ -1,7 +1,7 @@
 from app import db
 from app.models import User
 from flask import Flask, Blueprint, render_template, redirect, url_for, request, flash, session
-from flask_login import login_user
+from flask_login import login_user, logout_user, login_required
 from .form import SignUpForm, LoginForm
 
 auth = Blueprint('auth', __name__)
@@ -41,4 +41,11 @@ def create():
       return redirect(url_for('auth.login'))
     flash('Invalid username or password.')
   return render_template('signup.html', form=sign_up_form)
+
+@auth.route('/logout', methods=['GET'])
+@login_required
+def logout():
+  logout_user()
+  flash('You have been logged out!')
+  return redirect(url_for('main.index'))
   
