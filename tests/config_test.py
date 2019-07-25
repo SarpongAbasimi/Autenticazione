@@ -10,7 +10,6 @@ class TestConfigSetting():
     db_uri = hasattr(DevelopmentConfig, 'SQLALCHEMY_DATABASE_URI')
     app_secret = hasattr(DevelopmentConfig, 'SECRET_KEY')
     assert DevelopmentConfig.DEBUG == True
-    assert DevelopmentConfig.ENV == 'development'
     assert db_uri == True
     assert app_secret == True
   
