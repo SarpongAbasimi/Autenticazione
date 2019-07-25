@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/SarpongAbasimi/Autenticazione.svg?branch=master)](https://travis-ci.org/SarpongAbasimi/Autenticazione)
+
 <h1 align='center'>
  Autenticazione (Still in Development)
 </h1>
