@@ -1,6 +1,9 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+<div>
+  <li><a href={{ url_for('main.index')}}>Home</a></li>
+</div>
   <span>This is login page</span>
   <div>
     <form method='POST' action='/auth/session'>
