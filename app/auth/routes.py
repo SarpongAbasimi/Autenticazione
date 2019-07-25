@@ -1,6 +1,6 @@
 from app import db
 from app.models import User
-from flask import Flask, Blueprint, render_template, redirect, url_for, request, flash
+from flask import Flask, Blueprint, render_template, redirect, url_for, request, flash, session
 from flask_login import login_user
 from .form import SignUpForm, LoginForm
 
@@ -19,7 +19,7 @@ def new_session():
     if user and user.check_password(loginform.password.data):
       login_user(user)
       next = request.args.get('next')
-      return redirect(url_for('main.index')) if next is None else redirect(url_for(next))
+      return redirect(url_for('user.profile', username=user.name)) if next is None else redirect(url_for(next))
     flash('Invalid email or password.')
   return redirect(url_for('auth.login'))
 
