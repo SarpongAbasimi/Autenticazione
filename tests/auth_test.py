@@ -80,3 +80,18 @@ class TestAuth(object):
     follow_redirects=True)
     assert b'sorry name has alreaddy been taken.' in response.data
     assert b'sorry email has alreaddy been taken.' in response.data
+  
+  def test_for_nav_links_on_login_page(self, client):
+    response = client.get('/auth/login')
+    assert b'Home' in response.data
+
+  def test_login_users_can_logout_link(self, client):
+    response = client.post('/auth/session',
+      data =(
+        {
+          'email': 'c@demo.com',
+          'password': 'chris',
+        }),
+        follow_redirects = True)
+    request_sign_out = client.get('/auth/logout',follow_redirects = True)
+    assert b'You have been logged out!' in request_sign_out.data
