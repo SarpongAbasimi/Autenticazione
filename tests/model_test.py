@@ -1,5 +1,5 @@
 import pytest
-from app.models import User
+from app.models import User, Post
 
 class TestModel(object):
 
@@ -19,3 +19,11 @@ class TestModel(object):
     password = hasattr(User, 'password')
     assert password == True
   
+  def test_post_has_id_attr(self):
+    post_id = hasattr(Post, 'id')
+    content = hasattr(Post, 'content')
+    user_id = hasattr(Post, 'user_id')
+    assert post_id == True
+    assert content == True
+    assert user_id == True
+   
