@@ -13,6 +13,7 @@ class User(UserMixin, db.Model):
   name = db.Column(db.String(120), nullable=False)
   email = db.Column(db.String(120), nullable=False)
   password = db.Column(db.String(100), nullable=False)
+  post = db.relationship('Post', backref='user', lazy=True)
 
   def set_password(self, password):
     self.password = generate_password_hash(password)
@@ -22,3 +23,11 @@ class User(UserMixin, db.Model):
   
   def __repr__(self):
     return f'User {self.id} {self.name} {self.email} {self.password}'
+
+class Post(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  content = db.Column(db.Text, nullable=False)
+  user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+  def __repr__(self):
+    return f'Post => id: {self.user_id}, content: {self.content}'
