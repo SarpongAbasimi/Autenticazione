@@ -5,4 +5,5 @@
    {{ login_user_nav() }}
    {{ current_user.name }}
  {% endif %}
+ <p><a href={{ url_for('posts.index') }}>tweep</a></p>
 {% endblock content %}
