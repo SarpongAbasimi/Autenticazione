@@ -2,4 +2,9 @@
 
 {% block content %}
   <span>posts page</span>
+  <form method='POST' action='/altonero/create'>
+    {{ postform.csrf_token }}
+    {{ postform.content(placeholder='What is on your mind?') }}
+    {{ postform.submit }}
+  </form>
 {% endblock %}
