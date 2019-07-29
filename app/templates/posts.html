@@ -1,10 +1,14 @@
 {% extends 'layout.html' %}
-
+{% from 'macro.html' import login_user_nav %}
 {% block content %}
+  <div>
+    {{login_user_nav() }}
+  </div>
   <span>posts page</span>
   <form method='POST' action='/altonero/create'>
     {{ postform.csrf_token }}
     {{ postform.content(placeholder='What is on your mind?') }}
     {{ postform.submit }}
   </form>
+  <p> <a href={{ url_for('user.profile', username=current_user.name)}}>profile page</a></p>
 {% endblock %}

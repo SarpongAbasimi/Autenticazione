@@ -1,13 +1,15 @@
 from app import db
 from app.models import User
 from flask import Flask, Blueprint, render_template, redirect, url_for, request, flash, session
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from .form import SignUpForm, LoginForm
 
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET'])
 def login():
+  if current_user.is_authenticated:
+    return redirect(url_for('user.profile', username=current_user.name))
   loginform = LoginForm()
   return render_template('login.html', loginform=loginform)
 
