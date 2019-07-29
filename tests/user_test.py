@@ -16,3 +16,5 @@ class TestUserPage(object):
         }),
         follow_redirects = True)
     assert b'Logout' in response.data
+    assert b'chris' in response.data
+    assert b'tweep' in response.data
