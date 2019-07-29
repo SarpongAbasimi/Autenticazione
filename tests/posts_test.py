@@ -20,3 +20,4 @@ class TestPost(object):
     response = client.get('/altonero/')
 
     assert b'Logout' in response.data
+    assert b'profile page' in response.data
