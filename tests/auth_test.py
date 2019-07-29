@@ -20,6 +20,7 @@ class TestAuth(object):
   def test_sign_up_page(self, client):
     response = client.get('/auth/signup')
     assert b'sign up' in response.data
+    assert b'home' in response.data
 
   def test_signing_up_error_validation(self, client):
     user_data = (
