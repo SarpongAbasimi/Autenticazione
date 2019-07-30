@@ -6,4 +6,12 @@
    {{ current_user.name }}
  {% endif %}
  <p><a href={{ url_for('posts.index') }}>tweep</a></p>
+ <hr>
+ {% if user_posts %}
+    {% for post in user_posts %}
+      <ul>
+        <li>{{ post.content }}</li>
+      </ul>
+    {% endfor %}
+ {% endif %}
 {% endblock content %}
