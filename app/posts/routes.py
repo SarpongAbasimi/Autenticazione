@@ -17,7 +17,7 @@ def index():
 def create():
   postform = PostForm()
   if request.method == 'POST' and postform.validate_on_submit():
-    post = Post(content=postform.content.data, user_id=current_user.id)
+    post = Post(content=postform.content.data, user=current_user)
     db.session.add(post)
     db.session.commit()
     flash('Tweep posted')
